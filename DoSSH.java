@@ -13,31 +13,34 @@ import java.util.regex.Pattern;
 
 public class DoSSH {
     //Bootstrap Properties. Please DONT modify
-    private static String centosPath = "C:\\JARS\\CA_API_PlatformUpdate_64bit_v9.X-CentOS-2018-02-15";
-    private static String rhelPath = "C:\\JARS\\CA_API_PlatformUpdate_64bit_v9.X-RHEL-2018-02-15";
+    //Removed actual string values for security reasons
+    private static String centosPath = "";
+    private static String rhelPath = "";
     private static List<String> rpmList = new ArrayList<>();
     private static List<String> basePackageRpms = new ArrayList();
     private static List<String> plusPackageRpms = new ArrayList();
-    private static List<PkgInformation> pkgInfoList = new ArrayList();
     private static List<String> packagesLeftForUpdateCheck = new ArrayList<>();
     private static List<String> fullPackagesLeftForUpdateCheck = new ArrayList<>();
-    private static final String centosAzureFile = "RPMComparator/9_2_GA_Centos_Azure_52_163_118_9.txt";
-    private static final String centosAMIFile = "RPMComparator/9_2_GA_Centos_AMI_35.161.252.37.txt";
-    private static final String centosOVAFile = "RPMComparator/9_2_GA_Centos_OVA_10_130_5_160.txt";
-    private static final String mirrorBaseURL = "http://centos6-64-repo-mirror.l7tech.com/base/Packages/";
-    private static final String mirrorPlusURL = "http://centos6-64-repo-mirror.l7tech.com/centosplus/Packages/";
-    private static final String mirrorPlusFile = "RPMComparator/PLUSPACKAGELIST.txt";
-    private static final String mirrorBaseFile = "RPMComparator/BASEPACKAGELIST.txt";
+    //Removed actual string values for security reasons
+    private static final String centosAzureFile = "";
+    private static final String centosAMIFile = "";
+    private static final String centosOVAFile = "";
+    private static final String mirrorBaseURL = "";
+    private static final String mirrorPlusURL = "";
+    private static final String mirrorPlusFile = "";
+    private static final String mirrorBaseFile = "";
 
-    private static final String currentBaseFile = "RPMComparator/16_02_2018/9.3-CENTOS-AZURE-PRE.txt";
-    private static final String currentTargetFile = "RPMComparator/16_02_2018/9.3-CENTOS-AZURE-POST.txt";
-    private static final String L7PFile = "RPMComparator/16_02_2018/L7P.txt";
+    //Removed actual string values for security reasons
+    private static final String currentBaseFile = "";
+    private static final String currentTargetFile = "";
+    private static final String L7PFile = "";
 
-    private static final String azureHost = "52.163.118.9";
-    private static final String amiHost = "35.161.252.37";
-    private static final String ovaHost = "10.130.5.161";
-    private static final String username = "root";
-    private static final String secret = "7layer";
+    //Removed actual string values for security reasons
+    private static final String azureHost = "";
+    private static final String amiHost = "";
+    private static final String ovaHost = "";
+    private static final String username = "";
+    private static final String secret = "";
 
     public static void main(String[] args) throws Exception{
         //Uncomment when populating L7P for RHEL for first time
@@ -409,51 +412,4 @@ public class DoSSH {
         System.out.println("FULL PKG LENGTH = " + fullPackagesLeftForUpdateCheck.size());
         System.out.println("Fetching latest mirror RPM list from " + mirrorBaseURL + " and " + mirrorPlusURL + " ...");
     }
-
-    /**
-     * Helper method to create and extract RPMs and populate the same in corresponding files. Should be run on need basis
-     */
-    public static void testCode() throws Exception{
-        //Uncomment for RHEL L7P RPM generation
-        //getL7PRPMs(rhelPath);
-        getL7PRPMs(centosPath);
-        addL7PRPMSToFile();
-        runSSHCommand("rpm -qa",centosAMIFile,amiHost);
-
-        //L7P file count
-        List<String> L7PCount = convertFilesToList(L7PFile);
-        writeListToFile(L7PCount,L7PFile);
-        System.out.println(L7PCount.size());
-
-        //AMI file count
-        List<String> AMICount = convertFilesToList(centosAMIFile);
-        writeListToFile(AMICount,centosAMIFile);
-        System.out.println(AMICount.size());
-
-        //Azure file count
-        List<String> AzureCount = convertFilesToList(centosAzureFile);
-        writeListToFile(AzureCount,centosAzureFile);
-        System.out.println(AzureCount.size());
-
-        //OVA file count
-        List<String> OVACount = convertFilesToList(centosOVAFile);
-        writeListToFile(OVACount,centosOVAFile);
-        System.out.println(OVACount.size());
-        System.out.println("DIFF1 AMI to AZURE**************************************************************");
-        findDiff(centosAMIFile,centosAzureFile);
-        System.out.println("DIFF2 AMI to OVA****************************************************************");
-        findDiff(centosAMIFile,centosOVAFile);
-        System.out.println("DIFF3 AZURE to AMI**************************************************************");
-        findDiff(centosAzureFile,centosAMIFile);
-        System.out.println("DIFF4 AZURE to OVA**************************************************************");
-        findDiff(centosAzureFile,centosOVAFile);
-    }
-}
-
-class PkgInformation{
-    String formfactorRPM;
-    String mirrorRPM;
-    String formfactorVersion;
-    String mirrorRPMVersion;
-    boolean notUpdated;
 }
