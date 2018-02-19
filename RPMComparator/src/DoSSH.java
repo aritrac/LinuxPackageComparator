@@ -21,17 +21,17 @@ public class DoSSH {
     private static List<PkgInformation> pkgInfoList = new ArrayList();
     private static List<String> packagesLeftForUpdateCheck = new ArrayList<>();
     private static List<String> fullPackagesLeftForUpdateCheck = new ArrayList<>();
-    private static final String centosAzureFile = "9_2_GA_Centos_Azure_52_163_118_9.txt";
-    private static final String centosAMIFile = "9_2_GA_Centos_AMI_35.161.252.37.txt";
-    private static final String centosOVAFile = "9_2_GA_Centos_OVA_10_130_5_160.txt";
+    private static final String centosAzureFile = "RPMComparator/9_2_GA_Centos_Azure_52_163_118_9.txt";
+    private static final String centosAMIFile = "RPMComparator/9_2_GA_Centos_AMI_35.161.252.37.txt";
+    private static final String centosOVAFile = "RPMComparator/9_2_GA_Centos_OVA_10_130_5_160.txt";
     private static final String mirrorBaseURL = "http://centos6-64-repo-mirror.l7tech.com/base/Packages/";
     private static final String mirrorPlusURL = "http://centos6-64-repo-mirror.l7tech.com/centosplus/Packages/";
-    private static final String mirrorPlusFile = "PLUSPACKAGELIST.txt";
-    private static final String mirrorBaseFile = "BASEPACKAGELIST.txt";
+    private static final String mirrorPlusFile = "RPMComparator/PLUSPACKAGELIST.txt";
+    private static final String mirrorBaseFile = "RPMComparator/BASEPACKAGELIST.txt";
 
-    private static final String currentBaseFile = "16_02_2018/9.3-CENTOS-AZURE-PRE.txt";
-    private static final String currentTargetFile = "16_02_2018/9.3-CENTOS-AZURE-POST.txt";
-    private static final String L7PFile = "16_02_2018/L7P.txt";
+    private static final String currentBaseFile = "RPMComparator/16_02_2018/9.3-CENTOS-AZURE-PRE.txt";
+    private static final String currentTargetFile = "RPMComparator/16_02_2018/9.3-CENTOS-AZURE-POST.txt";
+    private static final String L7PFile = "RPMComparator/16_02_2018/L7P.txt";
 
     private static final String azureHost = "52.163.118.9";
     private static final String amiHost = "35.161.252.37";
@@ -49,8 +49,8 @@ public class DoSSH {
         //addL7PRPMSToFile();
 
 
-        //findDiff(currentBaseFile,currentTargetFile);
-        findDiff(currentTargetFile,L7PFile);
+        findDiff(currentBaseFile,currentTargetFile);
+        //findDiff(currentTargetFile,L7PFile);
     }
 
     /**
